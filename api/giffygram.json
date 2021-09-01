@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "name": "Brady Williams",
+      "email": "williams.cole29@yahoo.com",
+      "dateJoined": 1630514039206,
+      "id": 1
+    },
+    {
+      "name": "Wade Watts",
+      "email": "wadeWatts@IOI.com",
+      "dateJoined": 1630514078001,
+      "id": 2
+    },
+    {
+      "name": "Peter Parker",
+      "email": "notSpiderman@DailyBugle.com",
+      "dateJoined": 1630521031038,
+      "id": 3
+    },
+    {
+      "name": "Bryan",
+      "email": "bryan@bn.com",
+      "dateJoined": 1630520900286,
+      "id": 4
+    }
+  ],
+  "posts": [],
+  "messages": []
+}
