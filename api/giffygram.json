@@ -23,6 +23,12 @@
       "email": "bryan@bn.com",
       "dateJoined": 1630520900286,
       "id": 4
+    },
+    {
+      "name": "Wade Wilson",
+      "email": "ohYeah@DP.com",
+      "dateJoined": 1630522340818,
+      "id": 5
     }
   ],
   "posts": [],
