@@ -1,13 +1,21 @@
-import { getUsers } from "./data/DataManager.js";
+// Can you explain what is being imported here?
+import { getUsers, getPosts } from "./data/DataManager.js"
+import { PostList } from "./feed/PostList.js"
+
+const showPostList = () => {
+	//Get a reference to the location on the DOM where the list will display
+	const postElement = document.querySelector(".postList");
+	getPosts().then((allPosts) => {
+		postElement.innerHTML = PostList(allPosts);
+	})
+}
 
 
+const startGiffyGram = () => {
+	showPostList();
+}
 
-const testArray = getUsers().then(apiUser => {
-    apiUser.forEach(count => {
-        console.log(count);
-    })
-});
+startGiffyGram();
 
- 
 
 
