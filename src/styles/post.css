@@ -13,12 +13,12 @@
 }
 
 .newPost__input {
-    width: 30rem;
+    width: 35em;
     margin: 0.5rem 0;
 }
 
 .newPost__description {
-    width: 100%;
+    width: 35em;
     height: 5em;
 }
 
@@ -53,7 +53,10 @@
     margin: 0 25%;
     flex-basis: 50%;
 }
-
+.post__title{
+    display: flex;
+    justify-content: center;
+}
 .post__image {
     width: 100%;
 }
