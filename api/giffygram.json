@@ -87,6 +87,22 @@
       "userId": 1,
       "timestamp": "1630615675247",
       "id": 7
+    },
+    {
+      "title": "Gif Example 8",
+      "imageURL": "https://media.giphy.com/media/apGQjz1yYPnVK/giphy.gif",
+      "description": "Dummy Data",
+      "userId": 1,
+      "timestamp": 1630685105778,
+      "id": 8
+    },
+    {
+      "title": "Gif Example 9",
+      "imageURL": "https://media.giphy.com/media/8RjGWRIw5SSFq/giphy.gif",
+      "description": "Dummy Data",
+      "userId": 1,
+      "timestamp": 1630685376925,
+      "id": 9
     }
   ],
   "messages": []
