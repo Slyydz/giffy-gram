@@ -1,6 +1,7 @@
 export const PostEntry = () => {
     return `
     <div class="newPost">
+    <h2 class="postHeader">Create a new post!</h2>
         <div>
             <input value=""
                    name="postTitle"
@@ -19,9 +20,10 @@ export const PostEntry = () => {
         <textarea name="postDescription"
             class="newPost__input newPost__description"
             placeholder="Story behind your gif..."></textarea>
-
-        <button id="newPost__submit">Save</button>
-        <button id="newPost__cancel">Cancel</button>
+        <div>
+            <button id="newPost__submit">Save</button>
+            <button id="newPost__cancel">Cancel</button>
+        </div>
     </div>
     `
 }

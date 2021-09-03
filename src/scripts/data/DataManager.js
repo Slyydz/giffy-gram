@@ -45,14 +45,26 @@ export const usePostLength = () => {
 }
 
 //get posts method
+// export const getPosts = () => {
+//   return fetch("http://localhost:8088/posts")
+//     .then(response => response.json())
+//     .then(parsedResponse => {
+//       postCollection = parsedResponse
+//       return parsedResponse;
+//     })
+// }
+
 export const getPosts = () => {
-  return fetch("http://localhost:8088/posts")
-    .then(response => response.json())
-    .then(parsedResponse => {
-      postCollection = parsedResponse
-      return parsedResponse;
-    })
-}
+    const userId = getLoggedInUser().id
+    return fetch("http://localhost:8088/posts?_expand=user")
+      .then(response => response.json())
+      .then(parsedResponse => {
+        console.log("data with user", parsedResponse)
+        postCollection = parsedResponse
+        console.log(userId);
+        return parsedResponse;
+      })
+  }
 
 //create posts method
 export const createPost = postObj => {
