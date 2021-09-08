@@ -1,6 +1,6 @@
 # giffy-gram
 
-Giffy-Gram is a Web app that allows the user to post a gif using a giphgy link and add a title and description of the gif.
+giffy-gram is a web app that allows the user to post a gif using a giphy link and add a title and description of the gif.
 
 ## Usage
 
