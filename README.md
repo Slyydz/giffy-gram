@@ -1,7 +1,7 @@
 # giffy-gram
 
 giffy-gram is a web app that allows the user to post a gif using a giphy link and add a title and description of the gif.
-THe user is also able to filter the posts by year.
+The user is also able to filter the posts by year.
 
 ## Usage
 
