@@ -114,8 +114,10 @@ applicationElement.addEventListener("click", event => {
 		}
 
 		// be sure to import from the DataManager
-		createPost(postObject)
-		window.location.reload();
+		createPost(postObject).then(Response => showPostList());
+		document.querySelector("input[name='postTitle']").value = "";
+		document.querySelector("input[name='postURL']").value = "";
+		document.querySelector("textarea[name='postDescription']").value = "";
 	}
 })
 
