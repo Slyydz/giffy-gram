@@ -1,5 +1,5 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts, deletePost } from "./data/DataManager.js"
+import { getUsers, getPosts, deletePost, getSinglePost } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
@@ -7,6 +7,9 @@ import { usePostCollection } from "./data/DataManager.js";
 import { usePostLength } from "./data/DataManager.js";
 import { PostEntry } from "./feed/PostEntry.js";
 import { createPost } from "./data/DataManager.js";
+import { PostEdit } from "./feed/Post.js";
+import { getLoggedInUser } from "./data/DataManager.js";
+import { updatePost } from "./data/DataManager.js";
 
 //Show Post Data in List
 const showPostList = () => {
@@ -79,13 +82,48 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+const showEdit = (postObj) => {
+	const entryElement = document.querySelector(".entryForm");
+	entryElement.innerHTML = PostEdit(postObj);
+  }
+
 //Button for Editing Posts
 applicationElement.addEventListener("click", (event) => {
 	if (event.target.id.startsWith("edit")) {
-		console.log("post clicked", event.target.id.split("--"))
+		const postId = event.target.id.split("--")[1];
 		console.log("the id is", event.target.id.split("--")[1])
+		getSinglePost(postId)
+      		.then(response => {
+        		showEdit(response);
+      	})
 	}
 })
+
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("updatePost")) {
+	  const postId = event.target.id.split("__")[1];
+	  //collect all the details into an object
+	  const title = document.querySelector("input[name='postTitle']").value
+	  const url = document.querySelector("input[name='postURL']").value
+	  const description = document.querySelector("textarea[name='postDescription']").value
+	  const timestamp = document.querySelector("input[name='postTime']").value
+	  
+	  const postObject = {
+		title: title,
+		imageURL: url,
+		description: description,
+		userId: getLoggedInUser().id,
+		timestamp: parseInt(timestamp),
+		id: parseInt(postId)
+	  }
+	  
+	  updatePost(postObject)
+		.then(response => {
+		  showPostList();
+		})
+	}
+  })
 
 applicationElement.addEventListener("click", event => {
 	if(event.target.id.startsWith("delete")) {
