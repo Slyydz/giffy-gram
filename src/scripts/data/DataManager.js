@@ -78,3 +78,7 @@ export const createPost = postObj => {
     })
         .then(response => response.json())
   }
+
+export const deletePost = postObj => {
+    return fetch("http://localhost:8088/posts")
+}
