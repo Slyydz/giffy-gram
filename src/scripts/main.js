@@ -121,6 +121,7 @@ applicationElement.addEventListener("click", event => {
 	  updatePost(postObject)
 		.then(response => {
 		  showPostList();
+		  showPostEntry();
 		})
 	}
   })
@@ -136,9 +137,7 @@ applicationElement.addEventListener("click", event => {
 //Button and Etc for adding Post
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newPost__cancel") {
-		document.querySelector("input[name='postTitle']").value = "";
-		document.querySelector("input[name='postURL']").value = "";
-		document.querySelector("textarea[name='postDescription']").value = "";
+		showPostEntry();
 	}
 })
 
@@ -171,6 +170,9 @@ const showPostEntry = () => {
 	//Get a reference to the location on the DOM where the nav will display
 	const entryElement = document.querySelector(".entryForm");
 	entryElement.innerHTML = PostEntry();
+	document.querySelector("input[name='postTitle']").value = "";
+	document.querySelector("input[name='postURL']").value = "";
+	document.querySelector("textarea[name='postDescription']").value = "";
 }
 
 //Start 
