@@ -33,62 +33,6 @@
   ],
   "posts": [
     {
-      "title": "Gif Example",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/26BRsI63ak8uxsU6Y/giphy.gif",
-      "userId": 1,
-      "timestamp": 1630615675247,
-      "id": 1
-    },
-    {
-      "title": "Gif Example 2",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/uG5Q7bmKppnUc/giphy.gif",
-      "userId": 1,
-      "timestamp": 1630615740704,
-      "id": 2
-    },
-    {
-      "title": "Gif Example 3",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/3o7qE9gZn6dPKWfwZi/giphy.gif",
-      "userId": 3,
-      "timestamp": 1630615758055,
-      "id": 3
-    },
-    {
-      "title": "Gif Example 4",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/cIVKbPb7lQmOOYkvSY/giphy.gif",
-      "userId": 5,
-      "timestamp": 1630615773667,
-      "id": 4
-    },
-    {
-      "title": "Gif Example 5",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/M4tU9eVlKLEuk/giphy.gif",
-      "userId": 2,
-      "timestamp": 1630615791833,
-      "id": 5
-    },
-    {
-      "title": "Gif Example 6",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/13acVyyFdFGcAU/giphy.gif",
-      "userId": 4,
-      "timestamp": 1630615824699,
-      "id": 6
-    },
-    {
-      "title": "Gif Example 7",
-      "description": "Dummy Data",
-      "imageURL": "https://media.giphy.com/media/6KAxgfdBLzzqM/giphy.gif",
-      "userId": 1,
-      "timestamp": 1630615675247,
-      "id": 7
-    },
-    {
       "title": "Gif Example 8",
       "imageURL": "https://media.giphy.com/media/apGQjz1yYPnVK/giphy.gif",
       "description": "Dummy Data",

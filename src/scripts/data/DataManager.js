@@ -59,9 +59,7 @@ export const getPosts = () => {
     return fetch("http://localhost:8088/posts?_expand=user")
       .then(response => response.json())
       .then(parsedResponse => {
-        console.log("data with user", parsedResponse)
         postCollection = parsedResponse
-        console.log(userId);
         return parsedResponse;
       })
   }
@@ -80,5 +78,11 @@ export const createPost = postObj => {
   }
 
 export const deletePost = postObj => {
-    return fetch("http://localhost:8088/posts")
+    return fetch(`http://localhost:8088/posts/${postObj}`, {
+        method: "DELETE",
+        headers : {
+            "Content-Type": "application/json"
+        }}).then(response => response.json)
+        .then(getPosts);
 }
+

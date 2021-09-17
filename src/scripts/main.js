@@ -1,5 +1,5 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts } from "./data/DataManager.js"
+import { getUsers, getPosts, deletePost } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
@@ -84,6 +84,14 @@ applicationElement.addEventListener("click", (event) => {
 	if (event.target.id.startsWith("edit")) {
 		console.log("post clicked", event.target.id.split("--"))
 		console.log("the id is", event.target.id.split("--")[1])
+	}
+})
+
+applicationElement.addEventListener("click", event => {
+	if(event.target.id.startsWith("delete")) {
+		const getId = event.target.id.split("--", 6);
+		console.log(getId[1]);
+		deletePost(getId[1]).then(taco => {showPostList()});
 	}
 })
 
