@@ -38,9 +38,15 @@
     },
     {
       "name": "Clark Kent",
-      "email": "iloveglasses@DailyBugle.com",
+      "email": "iloveglasses@DailyPlanet.net",
       "dateJoined": 1632149401853,
       "id": 7
+    },
+    {
+      "name": "J Jonah Jameson",
+      "email": "bossman@DailyBugle.com",
+      "dateJoined": 1632153766833,
+      "id": 8
     }
   ],
   "posts": [
@@ -95,10 +101,34 @@
     {
       "title": "Yep",
       "imageURL": "https://media.giphy.com/media/9jVAv94PRzPoc/giphy.gif",
-      "description": "try",
+      "description": "Edit Working?",
       "userId": 6,
       "timestamp": 1632152184971,
       "id": 15
+    },
+    {
+      "title": "Still Working?",
+      "imageURL": "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
+      "description": "test",
+      "userId": 1,
+      "timestamp": 1632154068336,
+      "id": 18
+    },
+    {
+      "title": "This Peter guys hilarious",
+      "imageURL": "https://media.giphy.com/media/jQmVFypWInKCc/giphy.gif",
+      "description": "\"Could you pay me in advance?\"",
+      "userId": 8,
+      "timestamp": 1632154335144,
+      "id": 19
+    },
+    {
+      "title": "This Superman guy is super cool",
+      "imageURL": "https://media.giphy.com/media/lOlQiHAYE1VCJK77Ok/giphy.gif",
+      "description": "I wonder who this guy is he seems really cool!",
+      "userId": 7,
+      "timestamp": 1632154466977,
+      "id": 20
     }
   ],
   "messages": []
