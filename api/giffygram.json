@@ -29,13 +29,25 @@
       "email": "ohYeah@DP.com",
       "dateJoined": 1630522340818,
       "id": 5
+    },
+    {
+      "name": "Slyydz",
+      "email": "williams.cole29@yahoo.com",
+      "dateJoined": 1630522340818,
+      "id": 6
+    },
+    {
+      "name": "Clark Kent",
+      "email": "iloveglasses@DailyBugle.com",
+      "dateJoined": 1632149401853,
+      "id": 7
     }
   ],
   "posts": [
     {
       "title": "Gif Example 9",
       "imageURL": "https://media.giphy.com/media/8RjGWRIw5SSFq/giphy.gif",
-      "description": "Second best still",
+      "description": "Second best",
       "userId": 1,
       "timestamp": 1630685376925,
       "id": 9
@@ -71,6 +83,22 @@
       "userId": 1,
       "timestamp": 1631130459189,
       "id": 13
+    },
+    {
+      "title": "Testing User",
+      "imageURL": "https://media.giphy.com/media/lZ7nP5qFC0Lx6/giphy.gif",
+      "description": "Testing Slyydz",
+      "userId": 6,
+      "timestamp": 1632148841545,
+      "id": 14
+    },
+    {
+      "title": "Yep",
+      "imageURL": "https://media.giphy.com/media/9jVAv94PRzPoc/giphy.gif",
+      "description": "try",
+      "userId": 6,
+      "timestamp": 1632152184971,
+      "id": 15
     }
   ],
   "messages": []
