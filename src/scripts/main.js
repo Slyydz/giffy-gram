@@ -1,5 +1,5 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser } from "./data/DataManager.js"
+import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike } from "./data/DataManager.js"
 import { PostList, PostListEdit } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
@@ -94,6 +94,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+//Display Edit Info
 const showEdit = (postObj) => {
 	const entryElement = document.querySelector(".entryForm");
 	entryElement.innerHTML = PostEdit(postObj);
@@ -112,6 +113,7 @@ applicationElement.addEventListener("click", (event) => {
 	}
 })
 
+//Update Button for Edit
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id.startsWith("updatePost")) {
@@ -139,6 +141,7 @@ applicationElement.addEventListener("click", event => {
 	}
   })
 
+//Delete Button
 applicationElement.addEventListener("click", event => {
 	if(event.target.id.startsWith("delete")) {
 		const getId = event.target.id.split("--", 6);
@@ -154,6 +157,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+//New Post Submit Button
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id === "newPost__submit") {
@@ -179,6 +183,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+//Show Entry
 const showPostEntry = () => {
 	//Get a reference to the location on the DOM where the nav will display
 	const entryElement = document.querySelector(".entryForm");
@@ -196,6 +201,7 @@ const startGiffyGram = () => {
 	showPostEntry();
 }
 
+//Check If User is logged in
 const checkForUser = () => {
     if(sessionStorage.getItem("user")){
         setLoggedInUser(JSON.parse(sessionStorage.getItem("user")))
@@ -263,6 +269,20 @@ applicationElement.addEventListener("click", event => {
 	  sessionStorage.clear();
 	  checkForUser();
 	}
+  })
+
+  //Like Button
+  applicationElement.addEventListener("click", event => {
+	  if (event.target.id.startsWith("like")){
+		  const likeObject = {
+			  postId: parseInt(event.target.id.split("__")[1]),
+			  userId: getLoggedInUser().id
+		  }
+		  postLike(likeObject)
+		  .then(response => {
+			  showPostList();
+		  })
+	  }
   })
 
 checkForUser();

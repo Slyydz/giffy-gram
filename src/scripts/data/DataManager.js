@@ -140,3 +140,20 @@ return fetch(`http://localhost:8088/posts/${postObj.id}`, {
     .then(response => response.json())
     .then(getPosts())
 }
+
+export const postLike = likeObject => {
+	return fetch(`http://localhost:8088/userLikes/`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(likeObject)
+	})
+		.then(response => response.json())
+		.then(getPosts)
+}
+
+export const getLikes = (input) => {
+    return fetch(`http://localhost:8088/userLikes?postId=${input}`)
+    .then(response => response.json());
+}

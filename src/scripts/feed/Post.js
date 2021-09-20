@@ -1,3 +1,12 @@
+import { getLikes } from "../data/DataManager.js";
+
+const getNumberOfLikes = (postId) => {
+  getLikes(postId)
+  .then(response => {
+    document.querySelector(`#likes__${postId}`).innerHTML = `👍 ${response.length}`;
+  })
+}
+
 export const Post = (postObject) => {
     const dateObj = new Date(postObject.timestamp);
     const formattedDate = dateObj.toDateString();
@@ -10,6 +19,8 @@ export const Post = (postObject) => {
         <h3 class="description">${postObject.description}</h3>
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
+        <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
+        <div><button id="like__${postObject.id}">Like</button></div>
       </section>
     `
   }
@@ -26,7 +37,9 @@ export const Post = (postObject) => {
         <h3 class="description">${postObject.description}</h3>
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
-        <div><button id="edit--${postObject.id}">Edit</button></div> <div><button id="delete--${postObject.id}">Delete</button></div>
+        <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
+        <div><button id="edit--${postObject.id}">Edit</button></div>
+        <div><button id="delete--${postObject.id}">Delete</button></div>
       </section>
     `
   }
@@ -61,3 +74,4 @@ export const Post = (postObject) => {
     </div>
     `
   }
+
