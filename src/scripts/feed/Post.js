@@ -10,7 +10,6 @@ export const Post = (postObject) => {
         <h3 class="description">${postObject.description}</h3>
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
-        <p class="userId">User Id: ${postObject.userId}</p> 
       </section>
     `
   }
@@ -27,7 +26,6 @@ export const Post = (postObject) => {
         <h3 class="description">${postObject.description}</h3>
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
-        <p class="userId">User Id: ${postObject.userId}</p> 
         <div><button id="edit--${postObject.id}">Edit</button></div> <div><button id="delete--${postObject.id}">Delete</button></div>
       </section>
     `

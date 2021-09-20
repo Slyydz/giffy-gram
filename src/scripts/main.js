@@ -20,8 +20,6 @@ const showPostList = () => {
 	let edit = [];
 	let noEdit = [];
 	getPosts().then((allPosts) => {
-		console.log(allPosts[2].user.name);
-		console.log(sessionUser.name);
 		  for(let count = 0; count < allPosts.length; count++){
 		  	if(sessionUser.name === allPosts[count].user.name){
 				edit.push(allPosts[count]);
@@ -169,7 +167,7 @@ applicationElement.addEventListener("click", event => {
 			title: title,
 			imageURL: url,
 			description: description,
-			userId: 6,
+			userId: getLoggedInUser().id,
 			timestamp: Date.now()
 		}
 
