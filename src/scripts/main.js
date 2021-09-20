@@ -1,6 +1,6 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts, deletePost, getSinglePost } from "./data/DataManager.js"
-import { PostList } from "./feed/PostList.js"
+import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser } from "./data/DataManager.js"
+import { PostList, PostListEdit } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
 import { usePostCollection } from "./data/DataManager.js";
@@ -10,13 +10,27 @@ import { createPost } from "./data/DataManager.js";
 import { PostEdit } from "./feed/Post.js";
 import { getLoggedInUser } from "./data/DataManager.js";
 import { updatePost } from "./data/DataManager.js";
-
+import { setLoggedInUser } from "./data/DataManager.js";
+import { LoginForm, RegisterForm } from "../auth/Forms.js";
 //Show Post Data in List
 const showPostList = () => {
 	//Get a reference to the location on the DOM where the list will display
 	const postElement = document.querySelector(".postList");
+	const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+	let edit = [];
+	let noEdit = [];
 	getPosts().then((allPosts) => {
-		postElement.innerHTML = PostList(allPosts);
+		console.log(allPosts[2].user.name);
+		console.log(sessionUser.name);
+		  for(let count = 0; count < allPosts.length; count++){
+		  	if(sessionUser.name === allPosts[count].user.name){
+				edit.push(allPosts[count]);
+		  	}else{
+				noEdit.push(allPosts[count]);
+			  }
+		  }
+		postElement.innerHTML = PostListEdit(edit);
+		postElement.innerHTML += PostList(noEdit);
 	})
 }
 
@@ -96,6 +110,7 @@ applicationElement.addEventListener("click", (event) => {
       		.then(response => {
         		showEdit(response);
       	})
+		window.scrollTo(0, 0);
 	}
 })
 
@@ -154,7 +169,7 @@ applicationElement.addEventListener("click", event => {
 			title: title,
 			imageURL: url,
 			description: description,
-			userId: 1,
+			userId: 6,
 			timestamp: Date.now()
 		}
 
@@ -183,8 +198,76 @@ const startGiffyGram = () => {
 	showPostEntry();
 }
 
-//invoke start
-startGiffyGram();
+const checkForUser = () => {
+    if(sessionStorage.getItem("user")){
+        setLoggedInUser(JSON.parse(sessionStorage.getItem("user")))
+        startGiffyGram();
+    }else{
+		showLogIn();
+	}
+}
+
+const showLogIn = () => {
+	showNavBar();
+		const entryElement = document.querySelector(".entryForm");
+
+		entryElement.innerHTML = `${LoginForm()} <hr/><hr/> ${RegisterForm()}`
+
+		const postElement = document.querySelector(".postList");
+		postElement.innerHTML = "";
+}
+
+//Login button
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if(event.target.id == "login__submit"){
+		const userObject = {
+			name: document.querySelector("input[name='name']").value,
+			email: document.querySelector("input[name='email']").value,
+		}
+	
+	loginUser(userObject)
+	.then(dbUserObject => {
+		if(dbUserObject){
+			sessionStorage.setItem("user", JSON.stringify(dbUserObject));
+			startGiffyGram();
+		}else{
+			const entryElement = document.querySelector(".entryForm");
+			entryElement.innerHTML = '<p class="center">That user does not exist. Try again or register for an account</p>'
+		}
+	})
+  }
+})
+
+//Register Button
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "register__submit") {
+	  //collect all the details into an object
+	  const userObject = {
+		name: document.querySelector("input[name='registerName']").value,
+		email: document.querySelector("input[name='registerEmail']").value,
+		dateJoined: Date.now()
+	  }
+	  registerUser(userObject)
+	  .then(dbUserObj => {
+		sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+		startGiffyGram();
+	  })
+	}
+  })
+
+  //Logout Button
+  applicationElement.addEventListener("click", event => {
+	if (event.target.id === "logout") {
+	//   logoutUser();
+	  console.log(getLoggedInUser());
+	  sessionStorage.clear();
+	  checkForUser();
+	}
+  })
+
+checkForUser();
 
 
 
