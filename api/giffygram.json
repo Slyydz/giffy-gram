@@ -47,73 +47,15 @@
       "email": "bossman@DailyBugle.com",
       "dateJoined": 1632153766833,
       "id": 8
+    },
+    {
+      "name": "Skeletor",
+      "email": "hemanislame@snakemountain.com",
+      "dateJoined": 1632162379022,
+      "id": 9
     }
   ],
   "posts": [
-    {
-      "title": "Gif Example 9",
-      "imageURL": "https://media.giphy.com/media/8RjGWRIw5SSFq/giphy.gif",
-      "description": "Second best",
-      "userId": 1,
-      "timestamp": 1630685376925,
-      "id": 9
-    },
-    {
-      "title": "Example",
-      "imageURL": "https://media.giphy.com/media/3o7bu3hxaeqgi9SJQk/giphy.gif",
-      "description": "Dummy",
-      "userId": 1,
-      "timestamp": 1630693390606,
-      "id": 10
-    },
-    {
-      "title": "Example Katie",
-      "imageURL": "https://media.giphy.com/media/13oPvquv50JUCQ/giphy.gif",
-      "description": "Dummy Data",
-      "userId": 1,
-      "timestamp": 1630693448069,
-      "id": 11
-    },
-    {
-      "title": "Working?",
-      "imageURL": "https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif",
-      "description": "test",
-      "userId": 1,
-      "timestamp": 1631128742062,
-      "id": 12
-    },
-    {
-      "title": "Still Working?",
-      "imageURL": "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
-      "description": "Test",
-      "userId": 1,
-      "timestamp": 1631130459189,
-      "id": 13
-    },
-    {
-      "title": "Testing User",
-      "imageURL": "https://media.giphy.com/media/lZ7nP5qFC0Lx6/giphy.gif",
-      "description": "Testing Slyydz",
-      "userId": 6,
-      "timestamp": 1632148841545,
-      "id": 14
-    },
-    {
-      "title": "Yep",
-      "imageURL": "https://media.giphy.com/media/9jVAv94PRzPoc/giphy.gif",
-      "description": "Edit Working?",
-      "userId": 6,
-      "timestamp": 1632152184971,
-      "id": 15
-    },
-    {
-      "title": "Still Working?",
-      "imageURL": "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
-      "description": "test",
-      "userId": 1,
-      "timestamp": 1632154068336,
-      "id": 18
-    },
     {
       "title": "This Peter guys hilarious",
       "imageURL": "https://media.giphy.com/media/jQmVFypWInKCc/giphy.gif",
@@ -129,6 +71,14 @@
       "userId": 7,
       "timestamp": 1632154466977,
       "id": 20
+    },
+    {
+      "title": "Peace out",
+      "imageURL": "https://media.giphy.com/media/lZ7nP5qFC0Lx6/giphy.gif",
+      "description": "My exit strategy",
+      "userId": 9,
+      "timestamp": 1632162423648,
+      "id": 21
     }
   ],
   "userLikes": [
