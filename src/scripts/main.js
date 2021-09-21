@@ -1,5 +1,5 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike } from "./data/DataManager.js"
+import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike, getPostsByUser } from "./data/DataManager.js"
 import { PostList, PostListEdit } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
@@ -282,6 +282,14 @@ applicationElement.addEventListener("click", event => {
 		  .then(response => {
 			  showPostList();
 		  })
+	  }
+  })
+
+  applicationElement.eventListener("click", event => {
+	  if(event.target.id == "filterUser"){
+		const filterByUser = getPostsByUser().then(response => {
+			
+		})
 	  }
   })
 
