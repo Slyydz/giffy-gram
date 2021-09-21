@@ -3,6 +3,10 @@ export const Footer = () => {
     // HTML to be returned to GiffyGram component
     return `
         <footer class="footer">
+        <div class="footerButtons"> 
+        <button id="filterUser">Show your posts</button>
+        <button id="filterAll">Show all posts</button>
+        </div>
             <div class="footer__item">
                 Posts since <select id="yearSelection">
                     <option>2021</option>
