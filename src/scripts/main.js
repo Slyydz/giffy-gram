@@ -13,20 +13,20 @@ import { updatePost } from "./data/DataManager.js";
 import { setLoggedInUser } from "./data/DataManager.js";
 import { LoginForm, RegisterForm } from "../auth/Forms.js";
 //Show Post Data in List
+const postElement = document.querySelector(".postList");
 const showPostList = () => {
 	//Get a reference to the location on the DOM where the list will display
-	const postElement = document.querySelector(".postList");
 	const sessionUser = JSON.parse(sessionStorage.getItem("user"));
 	let edit = [];
 	let noEdit = [];
 	getPosts().then((allPosts) => {
-		  for(let count = 0; count < allPosts.length; count++){
-		  	if(sessionUser.name === allPosts[count].user.name){
+		for (let count = 0; count < allPosts.length; count++) {
+			if (sessionUser.name === allPosts[count].user.name) {
 				edit.push(allPosts[count]);
-		  	}else{
+			} else {
 				noEdit.push(allPosts[count]);
-			  }
-		  }
+			}
+		}
 		postElement.innerHTML = PostListEdit(edit);
 		postElement.innerHTML += PostList(noEdit);
 	})
@@ -98,7 +98,7 @@ applicationElement.addEventListener("click", event => {
 const showEdit = (postObj) => {
 	const entryElement = document.querySelector(".entryForm");
 	entryElement.innerHTML = PostEdit(postObj);
-  }
+}
 
 //Button for Editing Posts
 applicationElement.addEventListener("click", (event) => {
@@ -106,9 +106,9 @@ applicationElement.addEventListener("click", (event) => {
 		const postId = event.target.id.split("--")[1];
 		console.log("the id is", event.target.id.split("--")[1])
 		getSinglePost(postId)
-      		.then(response => {
-        		showEdit(response);
-      	})
+			.then(response => {
+				showEdit(response);
+			})
 		window.scrollTo(0, 0);
 	}
 })
@@ -117,36 +117,36 @@ applicationElement.addEventListener("click", (event) => {
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id.startsWith("updatePost")) {
-	  const postId = event.target.id.split("__")[1];
-	  //collect all the details into an object
-	  const title = document.querySelector("input[name='postTitle']").value
-	  const url = document.querySelector("input[name='postURL']").value
-	  const description = document.querySelector("textarea[name='postDescription']").value
-	  const timestamp = document.querySelector("input[name='postTime']").value
-	  
-	  const postObject = {
-		title: title,
-		imageURL: url,
-		description: description,
-		userId: getLoggedInUser().id,
-		timestamp: parseInt(timestamp),
-		id: parseInt(postId)
-	  }
-	  
-	  updatePost(postObject)
-		.then(response => {
-		  showPostList();
-		  showPostEntry();
-		})
+		const postId = event.target.id.split("__")[1];
+		//collect all the details into an object
+		const title = document.querySelector("input[name='postTitle']").value
+		const url = document.querySelector("input[name='postURL']").value
+		const description = document.querySelector("textarea[name='postDescription']").value
+		const timestamp = document.querySelector("input[name='postTime']").value
+
+		const postObject = {
+			title: title,
+			imageURL: url,
+			description: description,
+			userId: getLoggedInUser().id,
+			timestamp: parseInt(timestamp),
+			id: parseInt(postId)
+		}
+
+		updatePost(postObject)
+			.then(response => {
+				showPostList();
+				showPostEntry();
+			})
 	}
-  })
+})
 
 //Delete Button
 applicationElement.addEventListener("click", event => {
-	if(event.target.id.startsWith("delete")) {
+	if (event.target.id.startsWith("delete")) {
 		const getId = event.target.id.split("--", 6);
 		console.log(getId[1]);
-		deletePost(getId[1]).then(taco => {showPostList()});
+		deletePost(getId[1]).then(taco => { showPostList() });
 	}
 })
 
@@ -203,95 +203,100 @@ const startGiffyGram = () => {
 
 //Check If User is logged in
 const checkForUser = () => {
-    if(sessionStorage.getItem("user")){
-        setLoggedInUser(JSON.parse(sessionStorage.getItem("user")))
-        startGiffyGram();
-    }else{
+	if (sessionStorage.getItem("user")) {
+		setLoggedInUser(JSON.parse(sessionStorage.getItem("user")))
+		startGiffyGram();
+	} else {
 		showLogIn();
 	}
 }
 
 const showLogIn = () => {
 	showNavBar();
-		const entryElement = document.querySelector(".entryForm");
+	const entryElement = document.querySelector(".entryForm");
 
-		entryElement.innerHTML = `${LoginForm()} <hr/><hr/> ${RegisterForm()}`
+	entryElement.innerHTML = `${LoginForm()} <hr/><hr/> ${RegisterForm()}`
 
-		const postElement = document.querySelector(".postList");
-		postElement.innerHTML = "";
+	const postElement = document.querySelector(".postList");
+	postElement.innerHTML = "";
 }
 
 //Login button
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
-	if(event.target.id == "login__submit"){
+	if (event.target.id == "login__submit") {
 		const userObject = {
 			name: document.querySelector("input[name='name']").value,
 			email: document.querySelector("input[name='email']").value,
 		}
-	
-	loginUser(userObject)
-	.then(dbUserObject => {
-		if(dbUserObject){
-			sessionStorage.setItem("user", JSON.stringify(dbUserObject));
-			startGiffyGram();
-		}else{
-			const entryElement = document.querySelector(".entryForm");
-			entryElement.innerHTML = '<p class="center">That user does not exist. Try again or register for an account</p>'
-		}
-	})
-  }
+
+		loginUser(userObject)
+			.then(dbUserObject => {
+				if (dbUserObject) {
+					sessionStorage.setItem("user", JSON.stringify(dbUserObject));
+					startGiffyGram();
+				} else {
+					const entryElement = document.querySelector(".entryForm");
+					entryElement.innerHTML = '<p class="center">That user does not exist. Try again or register for an account</p>'
+				}
+			})
+	}
 })
 
 //Register Button
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id === "register__submit") {
-	  //collect all the details into an object
-	  const userObject = {
-		name: document.querySelector("input[name='registerName']").value,
-		email: document.querySelector("input[name='registerEmail']").value,
-		dateJoined: Date.now()
-	  }
-	  registerUser(userObject)
-	  .then(dbUserObj => {
-		sessionStorage.setItem("user", JSON.stringify(dbUserObj));
-		startGiffyGram();
-	  })
+		//collect all the details into an object
+		const userObject = {
+			name: document.querySelector("input[name='registerName']").value,
+			email: document.querySelector("input[name='registerEmail']").value,
+			dateJoined: Date.now()
+		}
+		registerUser(userObject)
+			.then(dbUserObj => {
+				sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+				startGiffyGram();
+			})
 	}
-  })
+})
 
-  //Logout Button
-  applicationElement.addEventListener("click", event => {
+//Logout Button
+applicationElement.addEventListener("click", event => {
 	if (event.target.id === "logout") {
-	//   logoutUser();
-	  console.log(getLoggedInUser());
-	  sessionStorage.clear();
-	  checkForUser();
+		//   logoutUser();
+		console.log(getLoggedInUser());
+		sessionStorage.clear();
+		checkForUser();
 	}
-  })
+})
 
-  //Like Button
-  applicationElement.addEventListener("click", event => {
-	  if (event.target.id.startsWith("like")){
-		  const likeObject = {
-			  postId: parseInt(event.target.id.split("__")[1]),
-			  userId: getLoggedInUser().id
-		  }
-		  postLike(likeObject)
-		  .then(response => {
-			  showPostList();
-		  })
-	  }
-  })
-
-  applicationElement.eventListener("click", event => {
-	  if(event.target.id == "filterUser"){
-		const filterByUser = getPostsByUser().then(response => {
-			
+//Like Button
+applicationElement.addEventListener("click", event => {
+	if (event.target.id.startsWith("like")) {
+		const likeObject = {
+			postId: parseInt(event.target.id.split("__")[1]),
+			userId: getLoggedInUser().id
+		}
+		postLike(likeObject)
+			.then(response => {
+				showPostList();
+			})
+	}
+})
+applicationElement.addEventListener("click", event => {
+	if (event.target.id == "filterUser") {
+		const filterByUser = getPostsByUser(getLoggedInUser().id).then(response => {
+			postElement.innerHTML = PostList(response);
 		})
-	  }
-  })
+	}
+})
+
+applicationElement.addEventListener("click", event => {
+	if(event.target.id == "filterAll") {
+		showPostList();
+	}
+})
 
 checkForUser();
 
