@@ -79,6 +79,14 @@
       "userId": 9,
       "timestamp": 1632162423648,
       "id": 21
+    },
+    {
+      "title": "The Boys",
+      "imageURL": "https://media.giphy.com/media/lIbVrBqGGHUl2/giphy.gif",
+      "description": "The dudes getting some coding in",
+      "userId": 6,
+      "timestamp": 1632259154580,
+      "id": 22
     }
   ],
   "userLikes": [

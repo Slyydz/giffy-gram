@@ -20,5 +20,20 @@
     justify-content: center;
 }
 
+.footerButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#filterUser {
+    height: 30px;
+    margin-right: 5px;
+}
+
+#filterAll{
+    height: 30px;
+}
+
 
 

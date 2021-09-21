@@ -55,22 +55,10 @@ let loggedInUser = {
      })
  }
 
-//  export const getPosts = () => {
-
-//     return fetch("http://localhost:8088/posts")
-//     .then(response => response.json())
-//     .then(parsedResponse => {
-//         // do something with response here
-//         return parsedResponse;
-//     })
-// }
-
 let postCollection = [];
 
 export const usePostCollection = () => {
-  //Best practice: we don't want to alter the original state, so
-  //make a copy of it and then return it
-  //The spread operator makes this quick work
+
   return [...postCollection];
 }
 
@@ -80,19 +68,19 @@ export const usePostLength = () => {
     return [...postCountLength]
 }
 
-//get posts method
-// export const getPosts = () => {
-//   return fetch("http://localhost:8088/posts")
-//     .then(response => response.json())
-//     .then(parsedResponse => {
-//       postCollection = parsedResponse
-//       return parsedResponse;
-//     })
-// }
-
 export const getPosts = () => {
     const userId = getLoggedInUser().id
     return fetch("http://localhost:8088/posts?_expand=user")
+      .then(response => response.json())
+      .then(parsedResponse => {
+        postCollection = parsedResponse
+        return parsedResponse;
+      })
+  }
+
+  export const getPostsByUser = () => {
+    const userId = getLoggedInUser().id
+    return fetch(`http://localhost:8088/posts?_expand=user&userId=${userId}`)
       .then(response => response.json())
       .then(parsedResponse => {
         postCollection = parsedResponse
