@@ -1,5 +1,5 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike, getPostsByUser } from "./data/DataManager.js"
+import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike, getPostsByUser, getLikes, getLikesForLikes } from "./data/DataManager.js"
 import { PostList, PostListEdit } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
@@ -19,16 +19,26 @@ const showPostList = () => {
 	const sessionUser = JSON.parse(sessionStorage.getItem("user"));
 	let edit = [];
 	let noEdit = [];
+	let alreadyLiked = [];
 	getPosts().then((allPosts) => {
-		for (let count = 0; count < allPosts.length; count++) {
-			if (sessionUser.name === allPosts[count].user.name) {
-				edit.push(allPosts[count]);
-			} else {
-				noEdit.push(allPosts[count]);
-			}
-		}
-		postElement.innerHTML = PostListEdit(edit);
-		postElement.innerHTML += PostList(noEdit);
+		 for (let count = 0; count < allPosts.length; count++) {
+		 	if (sessionUser.name === allPosts[count].user.name) {
+		 		edit.push(allPosts[count]);
+		 	} else {
+		 		noEdit.push(allPosts[count]);
+		 	}
+		 }
+		//  getLikesForLikes().then(response => {
+		// 	 console.log(response)
+		// 	 for(let count = 0; count < response.length; count++){
+		// 		if (sessionUser.id == response[count].userId){
+		// 			alreadyLiked.push(response[count]);
+		// 		}
+		// 	 }
+		// })
+
+		 postElement.innerHTML = PostListEdit(edit);
+		 postElement.innerHTML += PostList(noEdit);
 	})
 }
 
@@ -274,26 +284,29 @@ applicationElement.addEventListener("click", event => {
 //Like Button
 applicationElement.addEventListener("click", event => {
 	if (event.target.id.startsWith("like")) {
+		const postId = parseInt(event.target.id.split("__")[1]);
 		const likeObject = {
-			postId: parseInt(event.target.id.split("__")[1]),
+			postId: postId,
 			userId: getLoggedInUser().id
 		}
 		postLike(likeObject)
 			.then(response => {
 				showPostList();
 			})
+
 	}
+
 })
 applicationElement.addEventListener("click", event => {
 	if (event.target.id == "filterUser") {
 		const filterByUser = getPostsByUser(getLoggedInUser().id).then(response => {
-			postElement.innerHTML = PostList(response);
+			postElement.innerHTML = PostListEdit(response);
 		})
 	}
 })
 
 applicationElement.addEventListener("click", event => {
-	if(event.target.id == "filterAll") {
+	if (event.target.id == "filterAll") {
 		showPostList();
 	}
 })

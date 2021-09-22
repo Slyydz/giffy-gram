@@ -8,7 +8,7 @@
     },
     {
       "name": "Wade Watts",
-      "email": "wadeWatts@IOI.com",
+      "email": "wadewatts@IOI.com",
       "dateJoined": 1630514078001,
       "id": 2
     },
@@ -83,23 +83,21 @@
     {
       "title": "The Boys",
       "imageURL": "https://media.giphy.com/media/lIbVrBqGGHUl2/giphy.gif",
-      "description": "The dudes getting some coding in",
+      "description": "Jawesome!",
       "userId": 6,
       "timestamp": 1632259154580,
       "id": 22
+    },
+    {
+      "title": "Loading in",
+      "imageURL": "https://media.giphy.com/media/35MG6KoNC3zyAkGes0/giphy.gif",
+      "description": "Virtual reality has a lot to catch up to",
+      "userId": 2,
+      "timestamp": 1632323395268,
+      "id": 23
     }
   ],
   "userLikes": [
-    {
-      "postId": "6",
-      "userId": 1,
-      "id": 1
-    },
-    {
-      "postId": 9,
-      "userId": 7,
-      "id": 2
-    },
     {
       "postId": 9,
       "userId": 7,
@@ -119,6 +117,66 @@
       "postId": 19,
       "userId": 7,
       "id": 6
+    },
+    {
+      "postId": 21,
+      "userId": 6,
+      "id": 7
+    },
+    {
+      "postId": 23,
+      "userId": 6,
+      "id": 8
+    },
+    {
+      "postId": 23,
+      "userId": 6,
+      "id": 9
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 10
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 11
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 12
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 13
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 14
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 15
+    },
+    {
+      "postId": 21,
+      "userId": 6,
+      "id": 16
+    },
+    {
+      "postId": 21,
+      "userId": 6,
+      "id": 17
+    },
+    {
+      "postId": 19,
+      "userId": 2,
+      "id": 18
     }
   ],
   "messages": []

@@ -1,4 +1,4 @@
-import { Post, PostWithControls } from "./Post.js";
+import { Post, PostWithControls, PostWithNoLike } from "./Post.js";
 
 
 export const PostList = (allPosts) => {
@@ -18,6 +18,17 @@ export const PostListEdit = (allPosts) => {
 		for (const postObject of allPosts) {
 			//what is a postObject?
 			postHTML += PostWithControls(postObject)
+		}
+		return postHTML;
+	
+}
+
+export const PostListLikes = (allPosts) => {
+	let postHTML = "";
+		//Loop over the array of posts and for each one, invoke the Post component which returns HTML representation
+		for (const postObject of allPosts) {
+			//what is a postObject?
+			postHTML += PostWithNoLike(postObject)
 		}
 		return postHTML;
 	

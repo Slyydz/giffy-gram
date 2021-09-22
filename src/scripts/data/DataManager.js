@@ -145,3 +145,8 @@ export const getLikes = (input) => {
     return fetch(`http://localhost:8088/userLikes?postId=${input}`)
     .then(response => response.json());
 }
+
+export const getLikesForLikes = () => {
+  return fetch(`http://localhost:8088/userLikes`)
+  .then(response => response.json());
+}
