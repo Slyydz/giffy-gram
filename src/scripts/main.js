@@ -12,6 +12,7 @@ import { getLoggedInUser } from "./data/DataManager.js";
 import { updatePost } from "./data/DataManager.js";
 import { setLoggedInUser } from "./data/DataManager.js";
 import { LoginForm, RegisterForm } from "../auth/Forms.js";
+
 //Show Post Data in List
 const postElement = document.querySelector(".postList");
 const showPostList = () => {
@@ -85,27 +86,29 @@ const showFilteredPosts = (year) => {
 	document.getElementById("postCount").innerHTML = `${filteredData.length} posts since ${year}`;
 }
 
-//Button for DM Icon
+// //Button for DM Icon
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "directMessageIcon") {
 		console.log("dm");
 	}
 })
 
-//Button for Home Icon
+// //Button for Home Icon
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "homeImg") {
 		console.log("home");
 	}
 })
 
-//Display Edit Info
+// //Display Edit Info
 const showEdit = (postObj) => {
 	const entryElement = document.querySelector(".entryForm");
 	entryElement.innerHTML = PostEdit(postObj);
+	entryElement.style.display = "flex";
+	
 }
 
-//Button for Editing Posts
+// //Button for Editing Posts
 applicationElement.addEventListener("click", (event) => {
 	if (event.target.id.startsWith("edit")) {
 		const postId = event.target.id.split("--")[1];
@@ -146,7 +149,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-//Delete Button
+// //Delete Button
 applicationElement.addEventListener("click", event => {
 	if (event.target.id.startsWith("delete")) {
 		const getId = event.target.id.split("--", 6);
@@ -155,14 +158,15 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-//Button and Etc for adding Post
+// //Button and Etc for adding Post
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newPost__cancel") {
-		showPostEntry();
+		const entryElement = document.querySelector(".entryForm");
+		entryElement.style.display = "none";
 	}
 })
 
-//New Post Submit Button
+// //New Post Submit Button
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id === "newPost__submit") {
@@ -170,8 +174,7 @@ applicationElement.addEventListener("click", event => {
 		const title = document.querySelector("input[name='postTitle']").value
 		const url = document.querySelector("input[name='postURL']").value
 		const description = document.querySelector("textarea[name='postDescription']").value
-		//we have not created a user yet - for now, we will hard code `1`.
-		//we can add the current time as well
+
 		const postObject = {
 			title: title,
 			imageURL: url,
@@ -179,12 +182,14 @@ applicationElement.addEventListener("click", event => {
 			userId: getLoggedInUser().id,
 			timestamp: Date.now()
 		}
-
-		// be sure to import from the DataManager
-		createPost(postObject).then(Response => showPostList());
-		document.querySelector("input[name='postTitle']").value = "";
-		document.querySelector("input[name='postURL']").value = "";
-		document.querySelector("textarea[name='postDescription']").value = "";
+		if (postObject.title != "" || postObject.imageURL != "" || postObject.description != "") {
+			createPost(postObject).then(Response => showPostList());
+			document.querySelector("input[name='postTitle']").value = "";
+			document.querySelector("input[name='postURL']").value = "";
+			document.querySelector("textarea[name='postDescription']").value = "";
+			const entryElement = document.querySelector(".entryForm");
+			entryElement.style.display = "none";
+		}
 	}
 })
 
@@ -200,6 +205,8 @@ const showPostEntry = () => {
 
 //Start 
 const startGiffyGram = () => {
+	const entryElement = document.querySelector(".entryForm");
+	entryElement.style.display = "none";
 	showNavBar();
 	showPostList();
 	showFooter();
@@ -221,12 +228,13 @@ const showLogIn = () => {
 	const entryElement = document.querySelector(".entryForm");
 
 	entryElement.innerHTML = `${LoginForm()} <hr/><hr/> ${RegisterForm()}`
+	entryElement.style.display = "flex";
 
 	const postElement = document.querySelector(".postList");
 	postElement.innerHTML = "";
 }
 
-//Login button
+// //Login button
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id == "login__submit") {
@@ -248,7 +256,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-//Register Button
+// //Register Button
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id === "register__submit") {
@@ -266,7 +274,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-//Logout Button
+// //Logout Button
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "logout") {
 		//   logoutUser();
@@ -276,7 +284,7 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-//Like Button
+// //Like Button
 applicationElement.addEventListener("click", event => {
 	if (event.target.id.startsWith("like")) {
 		const postId = parseInt(event.target.id.split("__")[1]);
@@ -304,18 +312,26 @@ applicationElement.addEventListener("click", event => {
 		}
 
 		getLikesByAuthor(getLoggedInUser().id).then(response => {
-			 for (let count of response) {
+			for (let count of response) {
 				if (count.postId == postId) {
 					deleteLike(count.id)
 						.then(response => {
 							showPostList();
 						})
 				}
-			 }
+			}
 		}
 		)
 	}
 
+})
+
+//addPost
+applicationElement.addEventListener("click", event => {
+	if (event.target.id == "addPost") {
+		const entryElement = document.querySelector(".entryForm");
+		entryElement.style.display = "flex";
+	}
 })
 
 
