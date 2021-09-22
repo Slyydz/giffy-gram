@@ -53,9 +53,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .entryForm {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
+}
+
+.giffygram {
+    margin-top: 50px;
 }
 
 .postList{
@@ -68,5 +72,9 @@ html,body{
 
 .navigation, .footer {
     background-color: rgb(232,232,232);
+}
+
+.addPostButton{
+    margin-left: 10px;
 }
 

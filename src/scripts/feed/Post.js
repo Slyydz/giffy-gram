@@ -20,8 +20,10 @@ export const Post = (postObject) => {
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
         <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
-        <div><button id="like__${postObject.id}">Like</button></div>
-        <div><button id="unlike__${postObject.id}">Unlike</button></div>
+        <div class="liking">
+          <div><button class="likeButton" id="like__${postObject.id}">Like</button></div>
+          <div><button class="unlikeButton" id="unlike__${postObject.id}">Unlike</button></div>
+        </div>
       </section>
     `
   }
@@ -39,8 +41,10 @@ export const Post = (postObject) => {
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
         <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
-        <div class="editButton"><button id="edit--${postObject.id}">Edit</button></div>
-        <div class="deleteButton"><button id="delete--${postObject.id}">Delete</button></div>
+        <div class="edit">
+          <div class="editButton"><button id="edit--${postObject.id}">Edit</button></div>
+          <div class="deleteButton"><button id="delete--${postObject.id}">Delete</button></div>
+        </div>
       </section>
     `
   }

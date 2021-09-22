@@ -9,7 +9,7 @@
 
 .newPost {
     margin: 0 25%;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .newPost__input {
@@ -77,3 +77,20 @@
     margin: 1em 0 0.5em 0;
 }
 
+.liking{
+    display:flex;
+    flex-direction: row;
+}
+
+.likeButton{
+    margin-right: 10px;
+}
+
+.edit{
+    display:flex;
+    flex-direction: row;
+}
+
+.editButton{
+    margin-right: 10px;
+}

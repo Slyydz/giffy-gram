@@ -95,6 +95,14 @@
       "userId": 2,
       "timestamp": 1632323395268,
       "id": 23
+    },
+    {
+      "title": "Mars has more than just bars",
+      "imageURL": "https://media.giphy.com/media/g89JgNocAaMCs/giphy.gif",
+      "description": "Lets ride",
+      "userId": 6,
+      "timestamp": 1632340996957,
+      "id": 24
     }
   ],
   "userLikes": [
@@ -124,14 +132,19 @@
       "id": 17
     },
     {
-      "postId": 19,
-      "userId": 2,
-      "id": 18
-    },
-    {
       "postId": 20,
       "userId": 6,
       "id": 19
+    },
+    {
+      "postId": 19,
+      "userId": 2,
+      "id": 20
+    },
+    {
+      "postId": 22,
+      "userId": 2,
+      "id": 21
     }
   ],
   "messages": []
