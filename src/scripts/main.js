@@ -1,5 +1,5 @@
 // Can you explain what is being imported here?
-import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike, getPostsByUser } from "./data/DataManager.js"
+import { getUsers, getPosts, deletePost, getSinglePost, loginUser, registerUser, postLike, deleteLike, getPostsByUser, getLikes, getLikesByAuthor } from "./data/DataManager.js"
 import { PostList, PostListEdit } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./footer/footer.js";
@@ -19,6 +19,7 @@ const showPostList = () => {
 	const sessionUser = JSON.parse(sessionStorage.getItem("user"));
 	let edit = [];
 	let noEdit = [];
+	let alreadyLiked = [];
 	getPosts().then((allPosts) => {
 		for (let count = 0; count < allPosts.length; count++) {
 			if (sessionUser.name === allPosts[count].user.name) {
@@ -27,6 +28,10 @@ const showPostList = () => {
 				noEdit.push(allPosts[count]);
 			}
 		}
+		getLikesByAuthor(sessionUser.id).then(response => {
+			console.log(response);
+		})
+
 		postElement.innerHTML = PostListEdit(edit);
 		postElement.innerHTML += PostList(noEdit);
 	})
@@ -274,26 +279,57 @@ applicationElement.addEventListener("click", event => {
 //Like Button
 applicationElement.addEventListener("click", event => {
 	if (event.target.id.startsWith("like")) {
+		const postId = parseInt(event.target.id.split("__")[1]);
 		const likeObject = {
-			postId: parseInt(event.target.id.split("__")[1]),
+			postId: postId,
 			userId: getLoggedInUser().id
 		}
 		postLike(likeObject)
 			.then(response => {
 				showPostList();
 			})
+
 	}
+
 })
+
+//Unlike
+applicationElement.addEventListener("click", event => {
+	if (event.target.id.startsWith("unlike")) {
+		const postId = parseInt(event.target.id.split("__")[1]);
+
+		const likeObject = {
+			postId: postId,
+			userId: getLoggedInUser().id
+		}
+
+		getLikesByAuthor(getLoggedInUser().id).then(response => {
+			 for (let count of response) {
+				if (count.postId == postId) {
+					deleteLike(count.id)
+						.then(response => {
+							showPostList();
+						})
+				}
+			 }
+		}
+		)
+	}
+
+})
+
+
+//filter functions
 applicationElement.addEventListener("click", event => {
 	if (event.target.id == "filterUser") {
 		const filterByUser = getPostsByUser(getLoggedInUser().id).then(response => {
-			postElement.innerHTML = PostList(response);
+			postElement.innerHTML = PostListEdit(response);
 		})
 	}
 })
 
 applicationElement.addEventListener("click", event => {
-	if(event.target.id == "filterAll") {
+	if (event.target.id == "filterAll") {
 		showPostList();
 	}
 })

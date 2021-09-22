@@ -21,6 +21,7 @@ export const Post = (postObject) => {
         <p class="timestamp">${formattedDate}</p>
         <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
         <div><button id="like__${postObject.id}">Like</button></div>
+        <div><button id="unlike__${postObject.id}">Unlike</button></div>
       </section>
     `
   }
@@ -38,8 +39,25 @@ export const Post = (postObject) => {
         <h4 class="userName">${postObject.user.name}</h4>
         <p class="timestamp">${formattedDate}</p>
         <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
-        <div><button id="edit--${postObject.id}">Edit</button></div>
-        <div><button id="delete--${postObject.id}">Delete</button></div>
+        <div class="editButton"><button id="edit--${postObject.id}">Edit</button></div>
+        <div class="deleteButton"><button id="delete--${postObject.id}">Delete</button></div>
+      </section>
+    `
+  }
+
+  export const PostWithNoLike = (postObject) => {
+    const dateObj = new Date(postObject.timestamp);
+    const formattedDate = dateObj.toDateString();
+    return `
+      <section class="post">
+        <header>
+            <h2 class="post__title">${postObject.title}</h2>
+        </header>
+        <img class="post__image" src="${postObject.imageURL}" />
+        <h3 class="description">${postObject.description}</h3>
+        <h4 class="userName">${postObject.user.name}</h4>
+        <p class="timestamp">${formattedDate}</p>
+        <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
       </section>
     `
   }
