@@ -142,8 +142,9 @@ export const postLike = likeObject => {
     .then(getPosts)
 }
 
+//deleteLikes
 export const deleteLike = (input) => {
-  return fetch(`http://localhost:8088/userLikes?userId=${input}`, {
+  return fetch(`http://localhost:8088/userLikes/${input}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"

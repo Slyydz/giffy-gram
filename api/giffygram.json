@@ -114,36 +114,6 @@
       "id": 9
     },
     {
-      "postId": 20,
-      "userId": 6,
-      "id": 10
-    },
-    {
-      "postId": 20,
-      "userId": 6,
-      "id": 11
-    },
-    {
-      "postId": 20,
-      "userId": 6,
-      "id": 12
-    },
-    {
-      "postId": 20,
-      "userId": 6,
-      "id": 13
-    },
-    {
-      "postId": 20,
-      "userId": 6,
-      "id": 14
-    },
-    {
-      "postId": 20,
-      "userId": 6,
-      "id": 15
-    },
-    {
       "postId": 21,
       "userId": 6,
       "id": 16
@@ -157,6 +127,11 @@
       "postId": 19,
       "userId": 2,
       "id": 18
+    },
+    {
+      "postId": 20,
+      "userId": 6,
+      "id": 19
     }
   ],
   "messages": []

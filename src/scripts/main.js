@@ -21,19 +21,19 @@ const showPostList = () => {
 	let noEdit = [];
 	let alreadyLiked = [];
 	getPosts().then((allPosts) => {
-		 for (let count = 0; count < allPosts.length; count++) {
-		 	if (sessionUser.name === allPosts[count].user.name) {
-		 		edit.push(allPosts[count]);
-		 	} else {
-		 		noEdit.push(allPosts[count]);
-		 	}
-		 }
-		  getLikesByAuthor(sessionUser.id).then(response => {
-		 	 console.log(response);
-		 })
+		for (let count = 0; count < allPosts.length; count++) {
+			if (sessionUser.name === allPosts[count].user.name) {
+				edit.push(allPosts[count]);
+			} else {
+				noEdit.push(allPosts[count]);
+			}
+		}
+		getLikesByAuthor(sessionUser.id).then(response => {
+			console.log(response);
+		})
 
-		 postElement.innerHTML = PostListEdit(edit);
-		 postElement.innerHTML += PostList(noEdit);
+		postElement.innerHTML = PostListEdit(edit);
+		postElement.innerHTML += PostList(noEdit);
 	})
 }
 
@@ -293,6 +293,7 @@ applicationElement.addEventListener("click", event => {
 
 })
 
+//Unlike
 applicationElement.addEventListener("click", event => {
 	if (event.target.id.startsWith("unlike")) {
 		const postId = parseInt(event.target.id.split("__")[1]);
@@ -301,11 +302,18 @@ applicationElement.addEventListener("click", event => {
 			postId: postId,
 			userId: getLoggedInUser().id
 		}
-		deleteLike(getLoggedInUser().id)
-			.then(response => {
-				showPostList();
-			})
 
+		getLikesByAuthor(getLoggedInUser().id).then(response => {
+			 for (let count of response) {
+				if (count.postId == postId) {
+					deleteLike(count.id)
+						.then(response => {
+							showPostList();
+						})
+				}
+			 }
+		}
+		)
 	}
 
 })
