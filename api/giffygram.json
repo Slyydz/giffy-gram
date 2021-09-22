@@ -99,26 +99,6 @@
   ],
   "userLikes": [
     {
-      "postId": 9,
-      "userId": 7,
-      "id": 3
-    },
-    {
-      "postId": 11,
-      "userId": 7,
-      "id": 4
-    },
-    {
-      "postId": 14,
-      "userId": 7,
-      "id": 5
-    },
-    {
-      "postId": 19,
-      "userId": 7,
-      "id": 6
-    },
-    {
       "postId": 21,
       "userId": 6,
       "id": 7

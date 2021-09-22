@@ -21,6 +21,7 @@ export const Post = (postObject) => {
         <p class="timestamp">${formattedDate}</p>
         <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
         <div><button id="like__${postObject.id}">Like</button></div>
+        <div><button id="unlike__${postObject.id}">Unlike</button></div>
       </section>
     `
   }
